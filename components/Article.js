@@ -89,6 +89,66 @@ const data = [
   }
 ];
 
+const { open, close } = constants
+
+const articles = document.querySelector(".article")
+
+function articleMaker(article){
+  const newArticle = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const articleContent = document.createElement('div')
+  const paraOne = document.createElement('p')
+  const paraTwo = document.createElement('p')
+  const paraThree = document.createElement('p')
+  const articleButton = document.createElement('button')
+  const openButton = document.createElement('button')
+  const closeButton = document.createElement('button')
+
+  newArticle.appendChild(articleTitle)
+  newArticle.appendChild(articleDate)
+  newArticle.appendChild(articleContent)
+  articleContent.appendChild(paraOne)
+  articleContent.appendChild(paraTwo)
+  articleContent.appendChild(paraThree)
+  newArticle.appendChild(articleButton)
+  newArticle.appendChild(openButton)
+  newArticle.appendChild(closeButton)
+
+  newArticle.classList.add("article")
+  articleDate.classList.add("date")
+  articleContent.classList.add("content")
+  articleButton.classList.add("expandButton")
+  openButton.classList.add('bttn-open')
+  closeButton.classList.add('bttn-close', 'hide-bttn')
+  articleContent.classList.add('article-content')
+
+
+  articleTitle.textContent = article.title
+  articleDate.textContent = article.date
+  articleContent.textContent = article.content
+  paraOne.textContent = firstParagraph
+  paraTwo.textContent = secondParagraph
+  paraThree.textContent = thirdParagraph
+  articleButton.textContent = "Expand"
+  openButton.textContent = open
+  closeButton.textContent = close
+
+  articleButton.addEventListener("click", () => {
+    openButton.classList.toggle("hide-bttn")
+    closeButton.classList.toggle("hide-bttn")
+
+  });
+  data.forEach(objectData => {
+    const theArticle = articleMaker(objectData.article)
+    articles.appendChild(theArticle)
+  })
+
+}
+
+
+
+
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
